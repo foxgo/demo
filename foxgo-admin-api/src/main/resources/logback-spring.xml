@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-
     <!--application.properties 传递参数，不能使用logback 自带的<property>标签 -->
     <!--<springProperty scope="context" name="appname" source="logback.appname"/>-->
     <!--<springProperty scope="context" name="logdir" source="logback.logdir"/>-->
     <!-- 属性文件 -->
-    <property name="appname" value="demo"/>
-    <property name="logdir" value="C:/logs/demo"/>
-    <!--<property name="logdir" value="${LOG_PATH}"/>-->
+    <property name="appname" value="foxgo-admin-api"/>
+    <property name="logdir" value="${LOG_PATH}"/>
 
     <!--设置上下文名称-->
-    <contextName>demo</contextName>
+    <contextName>${appname}</contextName>
 
     <!-- 默认的控制台日志输出，一般生产环境都是后台启动，这个没太大作用 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -38,7 +36,7 @@
         <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
-            <FileNamePattern>${LOG_PATH}/info.${appname}.%d{yyyy-MM-dd}.log.gz</FileNamePattern>
+            <FileNamePattern>${logdir}/info.${appname}.%d{yyyy-MM-dd}.log.gz</FileNamePattern>
             <!--只保留最近30天的日志-->
             <maxHistory>30</maxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
@@ -76,10 +74,9 @@
         </encoder>
     </appender>
 
-
     <!-- 修改其他包的日志输出级别 -->
     <!--<logger name="org.apache.zookeeper">-->
-        <!--<level value="WARN"/>-->
+    <!--<level value="WARN"/>-->
     <!--</logger>-->
 
     <!--logback.UserController：具体类的全路径  addtivity:是否向上级loger传递打印信息。默认是true。-->

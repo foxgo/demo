@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.foxgo.admin.mapper.RoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.foxgo.admin.entity.Role">
+        <result column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role_sign" property="roleSign"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id
+        ,
+        create_time,
+        modified_time,
+        role_name,
+        role_sign,
+        remark
+    </sql>
+
+    <select id="listUserRoles" resultType="string">
+        select distinct
+            r.role_sign
+        from
+            sys_role r
+                inner join sys_user_role ur on ur.role_id = r.id
+        where
+            ur.user_id = #{id}
+    </select>
+
+</mapper>

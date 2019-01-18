@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.foxgo.admin.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.foxgo.admin.entity.User">
+        <result column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="real_name" property="realName"/>
+        <result column="user_name" property="userName"/>
+        <result column="pwd" property="pwd"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="state" property="state"/>
+        <result column="dept_id" property="deptId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        create_time,
+        modified_time,
+        real_name,
+        user_name,
+        pwd,
+        phone,
+        email,
+        state,
+        dept_id
+    </sql>
+
+</mapper>
